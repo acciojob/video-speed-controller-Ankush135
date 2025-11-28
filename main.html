@@ -1,21 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Video Speed Scrubber</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Speed Controller</title>
+    <style>
+      .player {
+        max-width: 750px;
+        margin: 20px auto;
+        background: #222;
+        color: #fff;
+        font-family: sans-serif;
+      }
 
-  <div class="wrapper">
-    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" controls></video>
-    <div class="speed">
-      <div class="speed-bar">1×</div>
+      .viewer {
+        width: 100%;
+        display: block;
+      }
+
+      .player__controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .player__button {
+        font-size: 18px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .player__slider {
+        width: 120px;
+      }
+
+      .progress {
+        position: relative;
+        height: 8px;
+        background: #555;
+        cursor: pointer;
+        flex: 1 0 100%;
+        margin-top: 8px;
+      }
+
+      .progress__filled {
+        width: 0%;
+        background: #f90;
+        height: 100%;
+        flex-basis: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="player">
+      <video
+        class="viewer"
+        src="https://www.w3schools.com/html/mov_bbb.mp4"
+      ></video>
+
+      <div class="player__controls">
+        <button class="player__button toggle">►</button>
+
+        <label>
+          Volume
+          <input
+            type="range"
+            name="volume"
+            min="0"
+            max="1"
+            step="0.05"
+            class="player__slider"
+            value="1"
+          />
+        </label>
+
+        <label>
+          Speed
+          <input
+            type="range"
+            name="playbackSpeed"
+            min="0.5"
+            max="2"
+            step="0.1"
+            class="player__slider"
+            value="1"
+          />
+        </label>
+
+        <button class="player__button" data-skip="-10">« 10s</button>
+        <button class="player__button" data-skip="25">25s »</button>
+
+        <div class="progress">
+          <div class="progress__filled"></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-<script  src="./script.js">
-  //Your code goes here
-</script>
-</body>
+    <script src="./scripts.js"></script>
+  </body>
 </html>
